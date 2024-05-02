@@ -1,8 +1,20 @@
 local HttpService = game:GetService("HttpService")
 
-local function send(whURL, content)
+local function send(whURL, description, content, fields, color, thumbnail, footer, timeStamp)
     local data = {
-        ["content"] = content
+        ["content"] = content,
+        ["embeds"] = {{
+            ["description"] = description,
+            ["fields"] = fields,
+            ["color"] = color,
+            ["thumbnail"] = {
+                ["url"] = thumbnail
+            },
+            ["footer"] = {
+                ["text"] = footer
+            },
+            ["timestamp"] = timeStamp
+        }}
     }
 
     local headers = {
@@ -20,3 +32,4 @@ local function send(whURL, content)
     end
 end
 
+return send
