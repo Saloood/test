@@ -1,0 +1,22 @@
+local HttpService = game:GetService("HttpService")
+
+local function send(whURL, content)
+    local data = {
+        ["content"] = content
+    }
+
+    local headers = {
+        ["Content-Type"] = "application/json"
+    }
+
+    local success, response = pcall(function()
+        return HttpService:PostAsync(whURL, HttpService:JSONEncode(data), Enum.HttpContentType.ApplicationJson, false, headers)
+    end)
+
+    if success then
+        print("ok")
+    else
+        warn("no: ", response)
+    end
+end
+
